@@ -30,6 +30,8 @@ declare let __moduleName: string;
 })
 export class LoginDemoComponent {
 
+  providers: string [] = ['ECM', 'BPM'];
+
   constructor(public router: Router) {
   }
 
