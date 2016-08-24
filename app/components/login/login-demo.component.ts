@@ -17,7 +17,7 @@
 
 import { Component } from '@angular/core';
 import { AlfrescoLoginComponent } from 'ng2-alfresco-login';
-import { Router, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { Router, ROUTER_DIRECTIVES } from '@angular/router';
 
 declare let __moduleName: string;
 
@@ -35,7 +35,7 @@ export class LoginDemoComponent {
 
   onLogin($event) {
     console.log($event);
-    this.router.navigate(['Home']);
+    this.router.navigate(['/home']);
   }
 
   onError($event) {

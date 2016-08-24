@@ -16,7 +16,7 @@
  */
 
 import { Component } from '@angular/core';
-import { Router, RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 import {
   MDL,
   AlfrescoSettingsService,
@@ -24,13 +24,7 @@ import {
   AlfrescoPipeTranslate,
   AlfrescoAuthenticationService
 } from 'ng2-alfresco-core';
-import { UploadButtonComponent } from 'ng2-alfresco-upload';
-import { FilesComponent } from './components/files/files.component';
-import { SearchComponent } from './components/search/search.component';
 import { SearchBarComponent } from './components/search/search-bar.component';
-import { LoginDemoComponent } from './components/login/login-demo.component';
-import { TasksDemoComponent } from './components/tasks/tasks-demo.component';
-import { ChartComponent } from './components/chart/chart.component';
 
 declare var document: any;
 
@@ -40,16 +34,6 @@ declare var document: any;
   directives: [SearchBarComponent, ROUTER_DIRECTIVES, MDL],
   pipes: [AlfrescoPipeTranslate]
 })
-@RouteConfig([
-  {path: '/', name: 'Login', component: LoginDemoComponent, useAsDefault: true},
-  {path: '/home', name: 'Home', component: FilesComponent},
-  {path: '/files', name: 'Files', component: FilesComponent},
-  {path: '/uploader', name: 'Uploader', component: UploadButtonComponent},
-  {path: '/search', name: 'Search', component: SearchComponent},
-  {path: '/tasks', name: 'Tasks', component: TasksDemoComponent},
-  {path: '/chart', name: 'Chart', component: ChartComponent},
-  {path: '/login', name: 'Login', component: LoginDemoComponent}
-])
 export class AppComponent {
   translate: AlfrescoTranslationService;
  searchTerm: string = '';
@@ -64,10 +48,6 @@ export class AppComponent {
     this.translate.addTranslationFolder();
   }
 
-  isActive(instruction: any[]): boolean {
-    return this.router.isRouteActive(this.router.generate(instruction));
-  }
-
   isLoggedIn(): boolean {
     return this.auth.isLoggedIn();
   }
@@ -76,7 +56,7 @@ export class AppComponent {
     event.preventDefault();
     this.auth.logout()
       .subscribe(
-        () => this.router.navigate(['Login'])
+        () => this.router.navigate(['/login'])
       );
   }
 

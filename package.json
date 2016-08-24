@@ -39,6 +39,7 @@
     "@angular/common": "2.0.0-rc.3",
     "@angular/compiler": "2.0.0-rc.3",
     "@angular/core": "2.0.0-rc.3",
+    "@angular/forms": "0.1.1",
     "@angular/http": "2.0.0-rc.3",
     "@angular/platform-browser": "2.0.0-rc.3",
     "@angular/platform-browser-dynamic": "2.0.0-rc.3",
@@ -62,6 +63,8 @@
     "ng2-alfresco-search": "0.1.25",
     "ng2-alfresco-upload": "0.1.55",
     "ng2-alfresco-viewer": "0.1.35",
+    "ng2-activiti-tasklist": "~0.1.0",
+    "ng2-activiti-form": "~0.1.0",
     "ng2-charts": "1.1.0",
     "chart.js": "^2.1.4",
     "rimraf": "^2.5.2"
