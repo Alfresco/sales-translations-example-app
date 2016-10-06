@@ -30,7 +30,7 @@ declare let __moduleName: string;
 })
 export class LoginDemoComponent {
 
-  providers: string [] = ['ECM', 'BPM'];
+  providers: string = 'ALL';
 
   constructor(public router: Router) {
   }
