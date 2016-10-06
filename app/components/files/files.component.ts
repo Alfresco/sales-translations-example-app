@@ -36,6 +36,7 @@ import { PaginationComponent } from 'ng2-alfresco-datatable';
 import { ALFRESCO_ULPOAD_COMPONENTS } from 'ng2-alfresco-upload';
 import { VIEWERCOMPONENT } from 'ng2-alfresco-viewer';
 import { FormService } from 'ng2-activiti-form';
+import { ActivitiProcessService } from 'ng2-activiti-processlist';
 
 declare let __moduleName: string;
 
@@ -52,7 +53,7 @@ declare let __moduleName: string;
         CONTEXT_MENU_DIRECTIVES,
         PaginationComponent
     ],
-    providers: [DOCUMENT_LIST_PROVIDERS, FormService],
+    providers: [DOCUMENT_LIST_PROVIDERS, FormService, ActivitiProcessService],
     pipes: [AlfrescoPipeTranslate]
 })
 export class FilesComponent implements OnInit {
@@ -73,6 +74,7 @@ export class FilesComponent implements OnInit {
     constructor(private contentService: AlfrescoContentService,
                 private documentActions: DocumentActionsService,
                 private formService: FormService,
+                private activitiProcess: ActivitiProcessService,
                 private router: Router) {
         this.currentPath = `/Sites/${this.siteId}/documentLibrary`
         documentActions.setHandler('my-handler', this.myDocumentActionHandler.bind(this));
@@ -129,18 +131,18 @@ export class FilesComponent implements OnInit {
     }
 
     viewActivitiForm(event?: any) {
-        this.router.navigate(['/activiti/tasks', '1']);
+        this.router.navigate(['/process', '1']);
     }
 
     private setupBpmActions(actions: any[]) {
         actions.map(def => {
             let documentAction = new DocumentActionModel();
-            documentAction.title = 'Activiti: ' + (def.name || 'Unknown process');
+            documentAction.title = def.name || 'Unknown process';
             documentAction.handler = this.getBpmActionHandler(def);
             this.documentList.actions.push(documentAction);
 
             let folderAction = new FolderActionModel();
-            folderAction.title = 'Activiti: ' + (def.name || 'Unknown process');
+            folderAction.title = def.name || 'Unknown process';
             folderAction.handler = this.getBpmActionHandler(def);
             this.documentList.actions.push(folderAction);
         });
@@ -148,7 +150,18 @@ export class FilesComponent implements OnInit {
 
     private getBpmActionHandler(processDefinition: any): ContentActionHandler {
         return function (obj: any, target?: any) {
-            window.alert(`Starting BPM process: ${processDefinition.id}`);
+            console.log(`Starting BPM process: ${processDefinition.id}`, obj);
+            if (processDefinition.id && obj.entry.name) {
+                this.activitiProcess.startProcess(processDefinition.id, obj.entry.name).subscribe(
+                    (res: any) => {
+                        console.log('Created process', res);
+                        this.router.navigate(['/process', '' + res.id]);
+                    },
+                    (err) => {
+                        console.log(err);
+                    }
+                );
+            }
         }.bind(this);
     }
 }

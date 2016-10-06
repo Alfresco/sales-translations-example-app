@@ -34,7 +34,7 @@ export const routes: RouterConfig = [
     {path: 'search', component: SearchComponent},
     {path: 'login', component: LoginDemoComponent},
     {path: 'process', component: ActivitiDemoComponent },
-    {path: 'process/tasks/:id', component: FormViewer }
+    {path: 'process/:id', component: FormViewer }
 ];
 
 export const appRouterProviders = [

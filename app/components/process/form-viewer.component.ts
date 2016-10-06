@@ -15,9 +15,10 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, OnDestroy, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewChecked, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActivitiForm, FormService } from 'ng2-activiti-form';
+import { ACTIVITI_PROCESSLIST_DIRECTIVES } from 'ng2-activiti-processlist';
 import { Subscription } from 'rxjs/Rx';
 
 declare let __moduleName: string;
@@ -28,14 +29,17 @@ declare var componentHandler;
     selector: 'form-viewer',
     templateUrl: './form-viewer.component.html',
     styleUrls: ['./form-viewer.component.css'],
-    directives: [ActivitiForm],
+    directives: [ActivitiForm, ACTIVITI_PROCESSLIST_DIRECTIVES],
     providers: [FormService]
 })
 export class FormViewer implements OnInit, OnDestroy, AfterViewChecked {
 
-    taskId: string;
+    processId: string;
 
     private sub: Subscription;
+
+    @ViewChild('processDetails')
+    processDetails: any;
 
     constructor(private formService: FormService,
                 private route: ActivatedRoute,
@@ -44,7 +48,7 @@ export class FormViewer implements OnInit, OnDestroy, AfterViewChecked {
 
     ngOnInit() {
         this.sub = this.route.params.subscribe(params => {
-            this.taskId = params['id'];
+            this.processId = params['id'];
         });
     }
 

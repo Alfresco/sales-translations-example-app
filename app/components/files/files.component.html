@@ -61,11 +61,6 @@
                 </content-action>
                 <content-action
                     target="folder"
-                    title="{{'DOCUMENT_LIST.ACTIONS.FOLDER.CUSTOM' | translate}}"
-                    (execute)="myFolderAction1($event)">
-                </content-action>
-                <content-action
-                    target="folder"
                     title="{{'DOCUMENT_LIST.ACTIONS.FOLDER.DELETE' | translate}}"
                     handler="delete">
                 </content-action>
@@ -77,23 +72,8 @@
                 </content-action>
                 <content-action
                     target="document"
-                    title="{{'DOCUMENT_LIST.ACTIONS.DOCUMENT.SYSTEM_2' | translate}}"
-                    handler="system2">
-                </content-action>
-                <content-action
-                    target="document"
-                    title="{{'DOCUMENT_LIST.ACTIONS.DOCUMENT.CUSTOM' | translate}}"
-                    (execute)="myCustomAction1($event)">
-                </content-action>
-                <content-action
-                    target="document"
                     title="{{'DOCUMENT_LIST.ACTIONS.DOCUMENT.DELETE' | translate}}"
                     handler="delete">
-                </content-action>
-                <content-action
-                    target="document"
-                    title="Activiti: View Form"
-                    (execute)="viewActivitiForm($event)">
                 </content-action>
             </content-actions>
         </alfresco-document-list>
