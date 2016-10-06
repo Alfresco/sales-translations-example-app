@@ -110,10 +110,10 @@
     <ul>
         <li>Current path: {{documentList.currentFolderPath}}</li>
         <li>
-            <button (click)="documentList.currentFolderPath = '/Sites/swsdp/documentLibrary';">Go to Document Library</button>
+            <button (click)="documentList.currentFolderPath = '/Sites/' + siteId + '/documentLibrary';">Go to Document Library</button>
         </li>
         <li>
-            <button (click)="documentList.currentFolderPath = '/Sites/swsdp/documentLibrary/Agency Files/Contracts'">Go to agency contracts</button>
+            <button (click)="documentList.currentFolderPath = '/Sites/'">Go to Sites</button>
         </li>
         <li>
             <button (click)="documentList.currentFolderPath = '/'">Go to root</button>

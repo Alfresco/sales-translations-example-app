@@ -56,7 +56,8 @@ declare let __moduleName: string;
     pipes: [AlfrescoPipeTranslate]
 })
 export class FilesComponent implements OnInit {
-    currentPath: string = '/Sites/sales-docs/documentLibrary';
+    siteId: string = 'sales-collateral';
+    currentPath: string = '';
 
     fileNodeId: any;
     fileShowed: boolean = false;
@@ -73,6 +74,7 @@ export class FilesComponent implements OnInit {
                 private documentActions: DocumentActionsService,
                 private formService: FormService,
                 private router: Router) {
+        this.currentPath = `/Sites/${this.siteId}/documentLibrary`
         documentActions.setHandler('my-handler', this.myDocumentActionHandler.bind(this));
     }
 
