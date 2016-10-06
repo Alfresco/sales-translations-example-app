@@ -31,10 +31,7 @@ export const routes: RouterConfig = [
     {path: 'home', component: FilesComponent},
     {path: '', component: LoginDemoComponent},
     {path: 'files', component: FilesComponent},
-    {path: 'uploader', component: UploadButtonComponent},
     {path: 'search', component: SearchComponent},
-    {path: 'tasks', component: TasksDemoComponent},
-    {path: 'chart', component: ChartComponent},
     {path: 'login', component: LoginDemoComponent},
     {path: 'process', component: ActivitiDemoComponent },
     {path: 'process/tasks/:id', component: FormViewer }
