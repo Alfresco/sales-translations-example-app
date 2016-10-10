@@ -2,11 +2,14 @@
 
 The [Angular 2](https://angular.io/) based application development framework requires the following:
 
-- An Alfresco Platform Repository to talk to, which has [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) enabled. 
+- An Alfresco Platform Repository (version [5.2.a-EA](https://wiki.alfresco.com/wiki/Community_file_list_201606-EA) or newer) to talk to, which has [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) enabled. 
 - [Node.js](https://nodejs.org/en/) JavaScript runtime.
 - [npm](https://www.npmjs.com/) package manager for JavaScript.
-- Access to the [Alfresco private npm repository](http://devproducts.alfresco.me) that contains the web components (note, you need VPN access to view)
  
+**Verify that you are running at least node `v5.x.x` and npm `3.x.x`**
+by running `node -v` and `npm -v` in a terminal/console window.
+Older versions produce errors.
+
 ## Installing Alfresco
  
 Alfresco comes with installers that will install all the servers, webapps, and tools needed to run Alfresco.
@@ -26,12 +29,22 @@ The web client that we are building with the application development framework w
 So we need to tell the Alfresco server that any request that comes in from this custom web client should be allowed access 
 to the Content Repository. This is done by enabling CORS.
 
-To enable CORS in the Alfresco Platform do the following:
+To enable CORS in the Alfresco Platform do one of the following:
 
-Modify *tomcat/webapps/alfresco/WEB-INF/web.xml* and uncomment the following section and update 
+**Download and install the enable CORS module**
+
+This is the easiest way, add the [enablecors](https://artifacts.alfresco.com/nexus/service/local/repositories/releases/content/org/alfresco/enablecors/1.0/enablecors-1.0.jar) 
+platform module JAR to the *$ALF_INSTALL_DIR/modules/platform* directory and restart the server.
+
+Note. by default the CORS filter that is enabled will allow any orgin.
+ 
+**Manually update the web.xml file**
+
+Modify *$ALF_INSTALL_DIR/tomcat/webapps/alfresco/WEB-INF/web.xml* and uncomment the following section and update 
 `cors.allowOrigin` to `http://localhost:3000`:
 
-```<filter>
+```
+   <filter>
       <filter-name>CORS</filter-name>
       <filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
       <init-param>
@@ -68,7 +81,8 @@ When specifying the `cors.allowOrigin` URL make sure to use the URL that will be
 
 Then uncomment filter mappings:
 
-``` <filter-mapping>
+```
+   <filter-mapping>
       <filter-name>CORS</filter-name>
       <url-pattern>/api/*</url-pattern>
       <url-pattern>/service/*</url-pattern>
@@ -80,53 +94,9 @@ Then uncomment filter mappings:
 
 If you don't have Node.js installed then access this [page](https://nodejs.org/en/download/) and use the appropriate installer for your OS.
 
-## Installing npm
-
-The npm package manager is included with Node.js, however it is not usually the latest version as npm is updated more frequently than node.js.
-
-Update npm as follows:
-
-`$ npm install npm -g`
-
-## Configure Alfresco Private npm repository 
-
-All the distribution packages for the application development framework components are stored in Alfresco's private npm repository, 
-which is visible only from the internal Alfresco LAN (or through VPN). We need to tell npm about this repository.
-  
-Set up Alfresco's private npm repository as follows:
-
-`$ npm set registry http://devproducts.alfresco.me:4873`
-
-### Add a user to the private npm registry (OPTIONAL)
-
-Note. This step is not needed if you are just going to use (i.e. read) the components.
-
-You can add yourself as a user to the private npm repository so you can publish to it.
-The user needs to have been registered with the repository beforehand.
-
-Example:
+Make sure the Node.js version is > 5:
 
 ```
-$ npm adduser --registry http://devproducts.alfresco.me:4873
-Username: <user name goes here>
-Password: 
-Email: (this IS public) <alfresco email address goes here>
-```
-
-#### How to publish on it:
-
-Add the repository to your *package.json* file: 
-
-```json
-  "publishConfig": {
-    "registry": "http://devproducts.alfresco.me:4873/"
-  }
-```
-*ATTENTION*: If you don't add these lines, then the package is published to the public npm repository.
-
-Then run the command below each time you want to publish a new version of a component:
-
-```sh
-npm version patch
-npm publish
+$ node -v
+v5.12.0
 ```
