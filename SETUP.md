@@ -37,7 +37,7 @@ After the site is created use the *Add users* button to add the other two users 
 the *Document Library* component, create two folders named *Collateral* and *Translations*.
 
 Now you are ready to import the process. Log into Activiti as the admin@app.activiti.com user. Navigate to *Apps* section of the *Kickstart* app and
-click the *Import Process* button to launch the import wizard. Upload the file *Sales App.zip* then click into the app
+click the *Import Process* button to launch the import wizard. Upload the file [sales-app.zip](activiti/sales-app.zip) then click into the app
 in order to access the *Publish* function. Once the app is published you must then share it with the other two users in
 order to ensure they have access to it.
 
