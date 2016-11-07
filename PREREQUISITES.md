@@ -7,59 +7,22 @@ This Alfresco Application Development Framework (ADF) -based app requires the fo
 - To enable cross-domain resources, [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) enabled in Alfresco and Activiti, or a reverse proxy such as nginx used to front the application, Alfresco and Activiti under the same IP/port/domain
 - [Node.js](https://nodejs.org/en/) JavaScript runtime.
 - [npm](https://www.npmjs.com/) package manager for JavaScript.
- 
 
-** Configuring Alfresco and Activiti **
+## Installing Node.js
 
-Log in to Activiti as the admin@app.activiti.com user and in the *Identify management* app click *Tenants*. Configure a
-new *Alfresco Repository* for the default tenant, which will allow the process to access content stored in the repository.
+If you don't have Node.js installed then access this [page](https://nodejs.org/en/download/) and use the appropriate installer for your OS.
 
-The tenant should get the ID *1* if it is the first one, if not then you will need to update the reference in the
-following two places where it is referenced in the *Translation Process* process
+Make sure the Node.js version is > 5:
 
- * In the *Attach* field in the form referenced by the *Request translation* user task
- * In the *Alfresco destination* attribute of the *Publish translation* process step
-
-Create the following users in both Alfresco and Activiti
-
-| Email                   | Last name | Last name | Username                | Password |
-|-------------------------|-----------|-----------|-------------------------|----------|
-| wilbur@app.activiti.com | Wilbur    | Adams     | wilbur@app.activiti.com | password |
-| marcus@app.activiti.com | Marcus    | Roberts   | marcus@app.activiti.com | password |
-
-Create the following user in Alfresco only, with the same password as you used to log in with this user in Activiti
-
-| Email                  | Last name | Last name | Username               |
-|------------------------|-----------|-----------|------------------------|
-| admin@app.activiti.com | Admin    | Activiti   | admin@app.activiti.com |
-
-Log in to Activiti as each of these three users and using the `Personal` section of the *Profile* or *Identify Management*
-apps, add their username and password values, which will allow them to access content in Alfresco.
-
-Log in to Alfresco as the admin@app.activiti.com user and create a new site with the following properties
-
- * Site name: Sales Collateral
- * Site URL: sales-collateral
-
-After the site is created use the *Add users* button to add the other two users with the *Site Manager* role. Then in
-the *Document Library* component, create two folders named *Collateral* and *Translations*.
-
-Now you are ready to import the process. Log into Activiti as the admin@app.activiti.com user. Navigate to *Apps* section of the *Kickstart* app and
-click the *Import Process* button to launch the import wizard. Upload the file *Sales App.zip* then click into the app
-in order to access the *Publish* function. Once the app is published you must then share it with the other two users in
-order to ensure they have access to it.
-
-*Note: should any errors occur when publishing the app, you will need to use the editor in the Processes section of
-Kickstart to fix these up, before re-publishing the app. If you cannot find the source of the errors, try removing and
-re-applying the user task assignees and re-selecting the folders within the sales-collateral site configured in the
-Translation request form Publish translation step.*
-
-Finally, log into Activiti as each of the other two users and check that they have access to the
-Sales app from their dashboards.
+```
+$ node -v
+v5.12.0
+```
 
 **Verify that you are running at least node `v5.x.x` and npm `3.x.x`**
 by running `node -v` and `npm -v` in a terminal/console window.
-Older versions produce errors.
+
+Older versions will produce errors when you run start the application.
 
 ## Installing Alfresco
  
@@ -153,14 +116,3 @@ Please ensure that you set Tomcat to run on port 9999, or you will need to confi
 
 CORS can be enabled in Activiti by over-writing the file `WEB-INF/com/activiti/servlet/WebConfigurer.class` inside the
 `activiti-app` webapp.
-
-## Installing Node.js
-
-If you don't have Node.js installed then access this [page](https://nodejs.org/en/download/) and use the appropriate installer for your OS.
-
-Make sure the Node.js version is > 5:
-
-```
-$ node -v
-v5.12.0
-```

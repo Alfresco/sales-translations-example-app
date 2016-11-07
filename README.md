@@ -7,6 +7,11 @@ Example app utilising the Alfresco [Angular2 components](https://github.com/Alfr
 Before you start using this app, make sure you have installed all required software and done all the 
 necessary configuration, see the [prerequisites](PREREQUISITES.md).
 
+## Configuring Alfresco and Activiti
+
+Follow the steps in (SETUP.md)[SETUP.md] which detail how to set up the correct data in Alfresco ECM
+and Activiti.
+
 ## Building and running
 
 Install dependencies
