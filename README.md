@@ -9,8 +9,8 @@ necessary configuration, see the [prerequisites](PREREQUISITES.md).
 
 ## Configuring Alfresco and Activiti
 
-Follow the steps in (SETUP.md)[SETUP.md] which detail how to set up the correct data in Alfresco ECM
-and Activiti.
+Follow the steps in [setup steps](SETUP.md) which detail how to set up the correct data in Alfresco ECM
+and Activiti before you run the application.
 
 ## Building and running
 
