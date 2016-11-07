@@ -46,5 +46,10 @@ Kickstart to fix these up, before re-publishing the app. If you cannot find the 
 re-applying the user task assignees and re-selecting the folders within the sales-collateral site configured in the
 Translation request form Publish translation step.*
 
+*Note: the app assumes that the appId of the published app is **1** (you can check this in the URL of the published app
+when you click it from your dashboard). If yours is different then you must update this in the `appId` property defined in the class
+`ActivitiDemoComponent` in file [activiti-demo.component.ts](app/components/process/activiti-demo.component.ts)*
+
 Finally, log into Activiti as each of the other two users and check that they have access to the
-Sales app from their dashboards.
+Sales app from their dashboards. Ensure you can click into the Sales app and click the *Tasks* and *Processes* tabs at the
+top of the page.
