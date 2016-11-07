@@ -4,28 +4,30 @@ Example app utilising the Alfresco [Angular2 components](https://github.com/Alfr
 
 ## Prerequisites
 
-Before you start using this development framework, make sure you have installed all required software and done all the 
+Before you start using this app, make sure you have installed all required software and done all the 
 necessary configuration, see the [prerequisites](PREREQUISITES.md).
 
-### Building and running
+## Building and running
 
-1 Install dependencies
+Install dependencies
 
 ```sh
 npm install
 ```
 
-2 Fast build and watch for dev purposes
+Fast build and watch for dev purposes
 
 ```sh
 npm start
 ```
 
->`start` script also includes live reload and watchers for all the `.ts` files.
+The `npm start` script also includes live reload and watchers for all the `.ts` files.
 TypeScript watchers are also configured for `node_modules` folder within demo shell
 and provide live reload for all the component libraries as well.
 
-###Multi-language
+## Customising the app
+
+### Add languages
 To support a new language you need to create your language file (.json) and add it to `i18n/` folder.
 
 ```json
